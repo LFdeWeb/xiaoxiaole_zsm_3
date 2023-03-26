@@ -19,29 +19,133 @@ cc.Class({
         candyPrefab: {
             type: cc.Prefab,
             default: null,
+        },
+        candyPrefab2: {
+            type: cc.Prefab,
+            default: null,
+        },
+        candyPrefab3: {
+            type: cc.Prefab,
+            default: null,
+        },
+        candyPrefab4: {
+            type: cc.Prefab,
+            default: null,
+        },
+        candyPrefab5: {
+            type: cc.Prefab,
+            default: null,
         }
     },
 
     start () {
-        this.newCandy(0,0);
-        this.newCandy(1,1);
-        // this.newCandy(2,2);
-        // this.newCandy(3,3);
-        // this.newCandy(4,4);
-        // this.newCandy(5,5);
+
+
+// for (let i = 0; i < 10; i++) {
+//     for (let j = 0; j < 10; j++) {
+//         let randomNum = Math.random();
+//         if (randomNum < 0.2) {
+//             this.newCandy(i, j);
+//         } else if (randomNum < 0.4) {
+//             this.newCandy2(i, j);
+//         } else if (randomNum < 0.6) {
+//             this.newCandy3(i, j);
+//         } else if (randomNum < 0.8) {
+//             this.newCandy4(i, j);
+//         } else {
+//             this.newCandy5(i, j);
+//         }
+//         this.getCandyJs(newCandy);
+//     }
+// }
+
+        for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        let randomNum = Math.random();
+        if (randomNum < 0.2) {
+            this.newCandy(i, j);
+        } else if (randomNum < 0.4) {
+            this.newCandy2(i, j);
+        } else if (randomNum < 0.6) {
+            this.newCandy3(i, j);
+        } else if (randomNum < 0.8) {
+            this.newCandy4(i, j);
+        } else {
+            this.newCandy5(i, j);
+        }
+        // this.getCandyJs(newCandy);
+    }
+}
+
+
+        // this.newCandy2(2, 2);
+
     },
     // 拿糖果的js
-    getCandyJs(node) {
+    // getCandyJs(node) {
+    //     node.setAnchorPoint(cc.v2(0, 0));
+    //     node.setPosition(cc.v2(0, 0));
+    //     console.log('==>',  node.getComponent('candy'))
+    //     return node.getComponent('candy');
+    // },
+      getCandyJs(node) {
+        node.setAnchorPoint(cc.v2(0, 0));
         console.log('==>',  node.getComponent('candy'))
         return node.getComponent('candy');
     },
+
 
     // 实例化糖果
     newCandy (row,col) {
         var newCandy = cc.instantiate(this.candyPrefab);
         console.log('===>', newCandy);
-        console.log('===>', this.node.getComponent('candy'));
+        console.log('===1233==>',  newCandy.getComponent('candy'));
         // this.getCandyJs(newCandy).setPos(row,col);
+        newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        this.node.addChild(newCandy);
+    },
+    newCandy2 (row,col) {
+        var newCandy = cc.instantiate(this.candyPrefab2);
+        newCandy.setScale(0.15);
+        // newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        // this.node.addChild(newCandy);
+        console.log('===>', newCandy);
+        console.log('===1233==>',  newCandy.getComponent('candy'));
+        // this.getCandyJs(newCandy).setPos(row,col);
+        newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        this.node.addChild(newCandy);
+    },
+    newCandy3 (row,col) {
+        var newCandy = cc.instantiate(this.candyPrefab3);
+        newCandy.setScale(0.15);
+        // newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        // this.node.addChild(newCandy);
+        console.log('===>', newCandy);
+        console.log('===1233==>',  newCandy.getComponent('candy'));
+        // this.getCandyJs(newCandy).setPos(row,col);
+        newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        this.node.addChild(newCandy);
+    },
+    newCandy4 (row,col) {
+        var newCandy = cc.instantiate(this.candyPrefab4);
+        newCandy.setScale(0.15);
+        // newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        // this.node.addChild(newCandy);
+        console.log('===>', newCandy);
+        console.log('===1233==>',  newCandy.getComponent('candy'));
+        // this.getCandyJs(newCandy).setPos(row,col);
+        newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        this.node.addChild(newCandy);
+    },
+    newCandy5 (row,col) {
+        var newCandy = cc.instantiate(this.candyPrefab5);
+        newCandy.setScale(0.15);
+        // newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
+        // this.node.addChild(newCandy);
+        console.log('===>', newCandy);
+        console.log('===1233==>',  newCandy.getComponent('candy'));
+        // this.getCandyJs(newCandy).setPos(row,col);
+        newCandy.setPosition(cc.v2(32 + 64 * row,32 + 64 * col))
         this.node.addChild(newCandy);
     }
 });

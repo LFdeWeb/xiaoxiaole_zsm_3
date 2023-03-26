@@ -14,7 +14,40 @@ cc.Class({
         mRow: null, // 行
         mCol: null // 列
     },
+onLoad () {
+  cc.systemEvent.on("MOVE_CANDY", this.onMoveCandy, this);
+},
 
+    onMoveCandy () {
+        this.node.on(cc.Node.EventType.TOUCH_START, function (event) {
+            this.startPos = event.getLocation();
+        }, this);
+
+        this.node.on(cc.Node.EventType.TOUCH_END, function (event) {
+            var endPos = event.getLocation();
+            var direction = endPos.sub(this.startPos);
+            if (direction.mag() > 50) {
+                if (Math.abs(direction.x) > Math.abs(direction.y)) {
+                    if (direction.x > 0) {
+                        // right
+                        cc.systemEvent.emit("MOVE_CANDY", {row: this.mRow, col: this.mCol, direction: "right"});
+                    } else {
+                        // left
+                        cc.systemEvent.emit("MOVE_CANDY", {row: this.mRow, col: this.mCol, direction: "left"});
+                    }
+                } else {
+                    if (direction.y > 0) {
+                        // up
+                        cc.systemEvent.emit("MOVE_CANDY", {row: this.mRow, col: this.mCol, direction: "up"});
+                    } else {
+                        // down
+                        cc.systemEvent.emit("MOVE_CANDY", {row: this.mRow, col: this.mCol, direction: "down"});
+                    }
+                }
+            }
+        }, this);
+
+    },
     start () {
 
     },
@@ -41,13 +74,13 @@ cc.Class({
     //根据糖果类型设置糖果纹理
     setCandyTexture (){
         var self = this;
-        Helper.loadres("candy" + this.mType, cc.SpriteFramee,function(frame){
-            self.node.getComponenet(cc.Sprite).spriteFrame = frame
+        Helper.loader("candy" + this.mType, cc.SpriteFramee,function(frame){
+            self.node.getComponent(cc.Sprite).spriteFrame = frame
         });
     },
 
     // 根据糖果的行列设置糖果坐标
     setCandyPos (){
-        this.node.setPosition(cc.v2(32 + 64 * this.mCol,32 + 64 * this.mROW))
+        this.node.setPosition(cc.v2(32 + 64 * this.mCol,32 + 64 * this.mRow))
     }
 });
